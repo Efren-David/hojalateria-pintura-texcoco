@@ -1,1 +1,23 @@
 
+name: CI/CD Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Test CI/CD
+        run: |
+          echo "================================="
+          echo "CI/CD funcionando correctamente"
+          echo "================================="
+          echo "Repositorio: $env:GITHUB_REPOSITORY"
+          echo "Commit: $env:GITHUB_SHA"
