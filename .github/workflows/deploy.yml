@@ -1,4 +1,4 @@
-name: CI/CD Test
+name: CI/CD Deploy
 
 on:
   push:
@@ -6,17 +6,19 @@ on:
       - main
 
 jobs:
-  test:
+  deploy:
     runs-on: self-hosted
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Test CI/CD
-        run: |
-          echo "================================="
-          echo "CI/CD funcionando correctamente"
-          echo "================================="
-          echo "Repositorio: $env:GITHUB_REPOSITORY"
-          echo "Commit: $env:GITHUB_SHA"
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+
+      - name: Deploy to S3
+        run: aws s3 sync . s3://hojalateria-pintura-texcoco --delete --exclude ".git/*" --exclude ".github/*" --exclude "Notas/*"
