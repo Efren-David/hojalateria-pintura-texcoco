@@ -60,7 +60,7 @@ const services = [
             "Unión mediante soldadura"
         ],
 
-        image: "img/car.jpg"
+        image: "img/hero/car.jpg"
     },
 
     {
@@ -245,7 +245,7 @@ const heroImages = [
 
     'img/hero2/man-painting.jpg',
     'img/hero2/man-spraying.jpg',
-    "img/shot-professional.jpg",
+    "img/hero/shot-professional.jpg",
    // 'img/hero2/man-white.jpg',
 
    // 'img/hero2/auto-service-salon.jpg',
